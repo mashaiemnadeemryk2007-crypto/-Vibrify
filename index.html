@@ -1,842 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibrify | Creative Digital Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #6c63ff;
-            --secondary: #4a44c9;
-            --accent: #ff6584;
-            --dark: #1a1a2e;
-            --darker: #0f0f1a;
-            --light: #f8f9fa;
-            --gray: #8a8aa3;
-        }
-
-        body {
-            background-color: var(--darker);
-            color: var(--light);
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            width: 500vw;
-            height: 100vh;
-            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-        }
-
-        .section {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        /* Section 1 - Welcome */
-        .welcome {
-            background: linear-gradient(135deg, var(--dark), var(--darker));
-        }
-
-        .welcome-content {
-            max-width: 600px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .logo {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(108, 99, 255, 0.4);
-        }
-
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            opacity: 0.1;
-            animation: float 15s infinite linear;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 5%;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            top: 60%;
-            left: 10%;
-            animation-delay: 2s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            top: 20%;
-            right: 10%;
-            animation-delay: 4s;
-        }
-
-        /* Section 2 - About Us */
-        .about {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-        }
-
-        .about-content {
-            max-width: 1000px;
-            z-index: 2;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-text {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .about-text p {
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .service-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .service-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Section 3 - Services */
-        .services {
-            background: linear-gradient(135deg, #16213e, #0f3460);
-        }
-
-        .services-content {
-            max-width: 1200px;
-            z-index: 2;
-        }
-
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .industry-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .industry-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .industry-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Section 4 - Packages */
-        .packages {
-            background: linear-gradient(135deg, #0f3460, #533483);
-        }
-
-        .packages-content {
-            max-width: 1200px;
-            width: 100%;
-            z-index: 2;
-        }
-
-        .pricing-horizontal {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px 10px 40px;
-            scroll-behavior: smooth;
-        }
-
-        .pricing-horizontal::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .pricing-horizontal::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .pricing-horizontal::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 35px 25px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            min-width: 320px;
-            flex-shrink: 0;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .pricing-card.popular {
-            border: 2px solid var(--accent);
-        }
-
-        .pricing-card.popular::before {
-            content: 'MOST POPULAR';
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--accent);
-            color: white;
-            padding: 8px 35px;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .plan-name {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .plan-price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .plan-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .plan-features li {
-            margin-bottom: 12px;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .plan-features li i {
-            color: var(--primary);
-        }
-
-        .scroll-indicator {
-            text-align: center;
-            margin-top: 20px;
-            color: var(--gray);
-        }
-
-        /* Section 5 - Thank You */
-        .thankyou {
-            background: linear-gradient(135deg, #533483, #6c63ff);
-        }
-
-        .thankyou-content {
-            max-width: 700px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .thankyou h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .thankyou p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        .social-link {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        /* Navigation Dots */
-        .nav-dots {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            z-index: 1000;
-        }
-
-        .nav-dot {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .dot-label {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .nav-dot.active .dot {
-            background: var(--primary);
-            transform: scale(1.3);
-        }
-
-        .nav-dot.active .dot-label {
-            color: white;
-            font-weight: 600;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-            100% {
-                transform: translateY(0) rotate(360deg);
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .container {
-                width: 500vw;
-            }
-            
-            .section {
-                padding: 60px 20px;
-                height: 100vh;
-                overflow-y: auto;
-            }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .pricing-card {
-                min-width: 280px;
-                padding: 25px 20px;
-            }
-            
-            .plan-price {
-                font-size: 2.5rem;
-            }
-            
-            .nav-dots {
-                right: 15px;
-            }
-            
-            .dot-label {
-                font-size: 0.8rem;
-            }
-            
-            .floating-element:nth-child(1) {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .floating-element:nth-child(2) {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .floating-element:nth-child(3) {
-                width: 60px;
-                height: 60px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section {
-                padding: 40px 15px;
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .pricing-card {
-                min-width: 260px;
-            }
-            
-            .nav-dots {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibrify | Creative Digital Solutions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+:root {
+  --primary: #6c63ff;
+  --secondary: #4a44c9;
+  --accent: #ff6584;
+  --dark: #0f0f1a;
+  --light: #f8f9fa;
+  --gray: #9a9ab3;
+}
+body {
+  background-color: var(--dark);
+  color: var(--light);
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ---------- Main Container ---------- */
+.container {
+  display: flex;
+  width: 500vw;
+  height: 100vh;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ---------- Each Section ---------- */
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 50px;
+}
+
+.section h1, .section h2 {
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section p {
+  color: var(--gray);
+  max-width: 600px;
+  margin: 15px auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.cta-btn {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: #fff;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 30px;
+  margin-top: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+}
+.cta-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+}
+
+/* ---------- Floating Elements ---------- */
+.floating {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  opacity: 0.1;
+  animation: float 12s infinite ease-in-out;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+/* ---------- Navigation Dots ---------- */
+.nav-dots {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.dot.active {
+  background: var(--primary);
+  transform: scale(1.3);
+}
+
+/* ---------- Animations for Sections ---------- */
+.section-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+.section.active .section-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .container {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+  }
+  .section {
+    height: auto;
+    min-height: 100vh;
+  }
+  .nav-dots {
+    display: none;
+  }
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation Dots -->
-    <div class="nav-dots">
-        <div class="nav-dot active" data-section="0">
-            <div class="dot"></div>
-            <div class="dot-label">Welcome</div>
-        </div>
-        <div class="nav-dot" data-section="1">
-            <div class="dot"></div>
-            <div class="dot-label">About Us</div>
-        </div>
-        <div class="nav-dot" data-section="2">
-            <div class="dot"></div>
-            <div class="dot-label">Services</div>
-        </div>
-        <div class="nav-dot" data-section="3">
-            <div class="dot"></div>
-            <div class="dot-label">Packages</div>
-        </div>
-        <div class="nav-dot" data-section="4">
-            <div class="dot"></div>
-            <div class="dot-label">Contact</div>
-        </div>
+
+<!-- Navigation Dots -->
+<div class="nav-dots">
+  <div class="dot active" data-index="0"></div>
+  <div class="dot" data-index="1"></div>
+  <div class="dot" data-index="2"></div>
+  <div class="dot" data-index="3"></div>
+  <div class="dot" data-index="4"></div>
+</div>
+
+<!-- Main Container -->
+<div class="container" id="mainContainer">
+  <!-- Welcome -->
+  <section class="section active">
+    <div class="floating" style="width:150px;height:150px;top:10%;left:5%;"></div>
+    <div class="floating" style="width:100px;height:100px;bottom:20%;right:10%;"></div>
+    <div class="section-content">
+      <h1>Vibrify</h1>
+      <p>Creative Digital Solutions That Bring Your Brand to Life</p>
+      <button class="cta-btn">Get Started</button>
     </div>
+  </section>
 
-    <!-- Main Container with Sections -->
-    <div class="container" id="main-container">
-        <!-- Section 1 - Welcome -->
-        <section class="section welcome">
-            <div class="floating-elements">
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
-            </div>
-            <div class="welcome-content">
-                <h1 class="logo">Vibrify</h1>
-                <p class="tagline">Creative Digital Solutions That Bring Your Brand to Life</p>
-                <button class="cta-button">Get Started Today</button>
-            </div>
-        </section>
-
-        <!-- Section 2 - About Us -->
-        <section class="section about">
-            <div class="about-content">
-                <div class="section-title">
-                    <h2>About Us</h2>
-                </div>
-                <div class="about-text">
-                    <p>At <strong>Vibrify</strong>, we bring ideas to life with creative design, smart development, and result-driven marketing. Our mission is to make your online presence powerful, professional, and profitable.</p>
-                    <p>With expertise in Website Development, SEO, Graphic Designing, and Video Editing, we deliver digital solutions that look amazing and bring real results.</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Website Development</h3>
-                        <p>Responsive, user-friendly websites</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h3>SEO Services</h3>
-                        <p>Rank higher, reach the right audience</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3>Graphic Design</h3>
-                        <p>Eye-catching, modern designs</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3>Video Editing</h3>
-                        <p>Engaging, high-quality videos</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 3 - Services -->
-        <section class="section services">
-            <div class="services-content">
-                <div class="section-title">
-                    <h2>Industries We Serve</h2>
-                    <p style="color: var(--gray);">Best fit for your business needs</p>
-                </div>
-                <div class="industries-grid">
-                    <div class="industry-card">
-                        <div class="industry-icon">
-                            <i class="fas fa-tshirt"></i>
-                        </div>
-                        <h3>Fashion & Lifestyle</h3>
-                        <p>Social posts + reels high demand. Perfect for clothing brands and influencers.</p>
-                    </div>
-                    <div class="industry-card">
-                        <div class="industry-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <h3>Food & Beverage</h3>
-                        <p>Restaurants, cafes, bakeries → menus + ads with mouth-watering visuals.</p>
-                    </div>
-                    <div class="industry-card">
-                        <div class="industry-icon">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <h3>Real Estate</h3>
-                        <p>Flyers, ads, reels, brand identity for property showcasing.</p>
-                    </div>
-                    <div class="industry-card">
-                        <div class="industry-icon">
-                            <i class="fas fa-dumbbell"></i>
-                        </div>
-                        <h3>Health & Fitness</h3>
-                        <p>Gyms, nutritionists → reels + tips posts to engage your audience.</p>
-                    </div>
-                    <div class="industry-card">
-                        <div class="industry-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3>E-commerce</h3>
-                        <p>Shopify brands → product posts, ads to boost sales.</p>
-                    </div>
-                    <div class="industry-card">
-                        <div class="industry-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3>Education / Courses</h3>
-                        <p>Coaches, tutors → carousels, explainers for educational content.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4 - Packages -->
-        <section class="section packages">
-            <div class="packages-content">
-                <div class="section-title">
-                    <h2>Our Packages</h2>
-                    <p style="color: var(--gray);">Choose the perfect plan for your needs</p>
-                </div>
-                
-                <div class="pricing-horizontal">
-                    <div class="pricing-card">
-                        <h3 class="plan-name">🌟 Starter</h3>
-                        <div class="plan-price">$15</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> 3 Social Media Graphics</li>
-                            <li><i class="fas fa-check"></i> 4 Short Video Edit (30 sec)</li>
-                            <li><i class="fas fa-check"></i> Basic On-Page SEO Setup</li>
-                            <li><i class="fas fa-check"></i> Single Page Website Banner</li>
-                            <li><i class="fas fa-check"></i> 2 Revisions</li>
-                            <li><i class="fas fa-check"></i> 3 Days Delivery</li>
-                        </ul>
-                        <button class="cta-button">Select Plan</button>
-                    </div>
-                    
-                    <div class="pricing-card popular">
-                        <h3 class="plan-name">✨ Standard</h3>
-                        <div class="plan-price">$30</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> 7 Social Media Graphics</li>
-                            <li><i class="fas fa-check"></i> 8 Video Edits (1 min each)</li>
-                            <li><i class="fas fa-check"></i> SEO Optimization</li>
-                            <li><i class="fas fa-check"></i> 3-Page Website</li>
-                            <li><i class="fas fa-check"></i> 5 Revisions</li>
-                            <li><i class="fas fa-check"></i> 5 Days Delivery</li>
-                        </ul>
-                        <button class="cta-button">Select Plan</button>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <h3 class="plan-name">💎 Premium</h3>
-                        <div class="plan-price">$50</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> 15 Social Media Graphics</li>
-                            <li><i class="fas fa-check"></i> 14 Video Edits (2 min each)</li>
-                            <li><i class="fas fa-check"></i> Advanced SEO + Audit</li>
-                            <li><i class="fas fa-check"></i> Full Website + Brand Kit</li>
-                            <li><i class="fas fa-check"></i> Unlimited Revisions</li>
-                            <li><i class="fas fa-check"></i> 7 Days Delivery</li>
-                        </ul>
-                        <button class="cta-button">Select Plan</button>
-                    </div>
-                </div>
-                
-                <div class="scroll-indicator">
-                    <i class="fas fa-arrow-right"></i> Scroll horizontally to see more packages
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5 - Thank You -->
-        <section class="section thankyou">
-            <div class="thankyou-content">
-                <h2>Thank You!</h2>
-                <p>We appreciate your interest in Vibrify. Let's create something amazing together!</p>
-                <p>Contact us today to discuss your project and get a personalized quote.</p>
-                <button class="cta-button">Get In Touch</button>
-                
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+  <!-- About -->
+  <section class="section">
+    <div class="section-content">
+      <h2>About Us</h2>
+      <p>We transform ideas into powerful digital experiences with creativity, innovation, and precision.</p>
     </div>
+  </section>
 
-    <script>
-        // Current section index
-        let currentSection = 0;
-        const totalSections = 5;
-        const container = document.getElementById('main-container');
-        const navDots = document.querySelectorAll('.nav-dot');
+  <!-- Services -->
+  <section class="section">
+    <div class="section-content">
+      <h2>Our Services</h2>
+      <p>Web Design, Branding, SEO, Social Media & Creative Video Editing — all under one roof.</p>
+    </div>
+  </section>
 
-        // Function to update active dot
-        function updateActiveDot(index) {
-            navDots.forEach(dot => dot.classList.remove('active'));
-            navDots[index].classList.add('active');
-        }
+  <!-- Packages -->
+  <section class="section">
+    <div class="section-content">
+      <h2>Packages</h2>
+      <p>Flexible plans to suit startups, businesses, and creative professionals alike.</p>
+    </div>
+  </section>
 
-        // Function to scroll to section
-        function scrollToSection(index) {
-            if (index < 0) index = 0;
-            if (index >= totalSections) index = totalSections - 1;
-            
-            currentSection = index;
-            container.style.transform = `translateX(-${index * 100}vw)`;
-            updateActiveDot(index);
-        }
+  <!-- Thank You -->
+  <section class="section">
+    <div class="section-content">
+      <h2>Thank You!</h2>
+      <p>Let's build something extraordinary together.</p>
+      <button class="cta-btn">Contact Us</button>
+    </div>
+  </section>
+</div>
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add click events to navigation dots
-            navDots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    const sectionIndex = parseInt(dot.getAttribute('data-section'));
-                    scrollToSection(sectionIndex);
-                });
-            });
-        });
+<script>
+let currentIndex = 0;
+const total = 5;
+const container = document.getElementById("mainContainer");
+const dots = document.querySelectorAll(".dot");
+const sections = document.querySelectorAll(".section");
 
-        // Mouse wheel navigation
-        let isScrolling = false;
-        window.addEventListener('wheel', (e) => {
-            if (isScrolling) return;
-            
-            isScrolling = true;
-            
-            if (e.deltaY > 0) {
-                scrollToSection(currentSection + 1);
-            } else {
-                scrollToSection(currentSection - 1);
-            }
-            
-            setTimeout(() => {
-                isScrolling = false;
-            }, 1000);
-        });
+function activateSection(index) {
+  sections.forEach(s => s.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+  if(sections[index]) sections[index].classList.add("active");
+  if(dots[index]) dots[index].classList.add("active");
+  container.style.transform = `translateX(-${index * 100}vw)`;
+  currentIndex = index;
+}
 
-        // Keyboard navigation
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                scrollToSection(currentSection + 1);
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                scrollToSection(currentSection - 1);
-            }
-        });
+// Dots click
+dots.forEach(dot => {
+  dot.addEventListener("click", () => {
+    activateSection(parseInt(dot.dataset.index));
+  });
+});
 
-        // Touch swipe for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
+// Scroll horizontal by mouse wheel
+let isScrolling = false;
+window.addEventListener("wheel", e => {
+  if (window.innerWidth < 768 || isScrolling) return;
+  isScrolling = true;
+  if (e.deltaY > 0) activateSection(Math.min(currentIndex + 1, total - 1));
+  else activateSection(Math.max(currentIndex - 1, 0));
+  setTimeout(() => (isScrolling = false), 1000);
+});
+</script>
 
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            
-            if (touchEndX < touchStartX - swipeThreshold) {
-                scrollToSection(currentSection + 1);
-            }
-            
-            if (touchEndX > touchStartX + swipeThreshold) {
-                scrollToSection(currentSection - 1);
-            }
-        }
-
-        // Button click animations
-        const buttons = document.querySelectorAll('.cta-button');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-    </script>
 </body>
 </html>
