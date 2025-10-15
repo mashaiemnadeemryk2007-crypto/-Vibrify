@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrify | Creative Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6c63ff;
+            --secondary: #4a44c9;
+            --accent: #ff6584;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --light: #f8f9fa;
+            --gray: #8a8aa3;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 500vw;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .section {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 20px;
+        }
+
+        /* Mobile First Approach */
+        /* Section 1 - Welcome */
+        .welcome {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            text-align: center;
+        }
+
+        .welcome-content {
+            max-width: 100%;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.7s;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            font-size: 1rem;
+            width: 100%;
+            max-width: 280px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.9s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        /* Section 2 - About Us */
+        .about {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        .about-content {
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .about-text p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .service-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .service-item p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Section 3 - Services */
+        .services {
+            background: linear-gradient(135deg, #16213e, #0f3460);
+        }
+
+        .services-content {
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .industry-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .industry-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .industry-card p {
+            color: var(--gray);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        /* Section 4 - Packages - Mobile Optimized Horizontal Layout */
+        .packages {
+            background: linear-gradient(135deg, #0f3460, #533483);
+            padding: 60px 15px;
+            align-items: flex-start;
+        }
+
+        .packages-content {
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+        }
+
+        .pricing-horizontal {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px 25px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+
+        .pricing-horizontal::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .pricing-horizontal::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .pricing-horizontal::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 8px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            min-width: 260px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            scroll-snap-align: start;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+        }
+
+        .pricing-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -25px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 25px;
+            transform: rotate(45deg);
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .plan-name {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .plan-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .plan-period {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .plan-features li {
+            margin-bottom: 8px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li i {
+            color: var(--primary);
+            width: 16px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .plan-action {
+            text-align: center;
+        }
+
+        .plan-action .cta-button {
+            max-width: 100%;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+        }
+
+        .scroll-indicator {
+            text-align: center;
+            margin-top: 12px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .scroll-indicator i {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(0);
+            }
+            40% {
+                transform: translateX(4px);
+            }
+            60% {
+                transform: translateX(2px);
+            }
+        }
+
+        /* Section 5 - Thank You */
+        .thankyou {
+            background: linear-gradient(135deg, #533483, #6c63ff);
+            text-align: center;
+        }
+
+        .thankyou-content {
+            width: 100%;
+            max-width: 100%;
+            z-index: 2;
+        }
+
+        .thankyou h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .thankyou p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .nav-dot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dot-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.65rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .nav-dot.active .dot {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+
+        .nav-dot.active .dot-label {
+            color: white;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 360px) {
+            .section {
+                padding: 60px 15px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .pricing-card {
+                min-width: 240px;
+                padding: 18px 12px;
+            }
+            
+            .plan-price {
+                font-size: 2rem;
+            }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .section {
+                padding: 80px 30px;
+            }
+            
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .pricing-card {
+                min-width: 280px;
+                padding: 25px 20px;
+            }
+            
+            .nav-dots {
+                bottom: 20px;
+            }
+            
+            .dot-label {
+                display: block;
+                font-size: 0.75rem;
+            }
+            
+            .floating-element:nth-child(1) {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .floating-element:nth-child(2) {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .floating-element:nth-child(3) {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .logo {
+                font-size: 5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .industries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .pricing-card {
+                min-width: 300px;
+            }
+            
+            .nav-dots {
+                right: 30px;
+                left: auto;
+                top: 50%;
+                bottom: auto;
+                transform: translateY(-50%);
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-dot {
+                flex-direction: row;
+                gap: 8px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1200px) {
+            .section {
+                padding: 100px 40px;
+            }
+            
+            .welcome-content,
+            .about-content,
+            .services-content,
+            .packages-content,
+            .thankyou-content {
+                max-width: 1200px;
+            }
+        }
+
+        /* Touch device improvements */
+        @media (hover: none) {
+            .pricing-card:hover,
+            .service-item:hover,
+            .industry-card:hover,
+            .social-link:hover {
+                transform: none;
+            }
+        }
+
+        /* Fix for very small heights */
+        @media (max-height: 600px) {
+            .section {
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                margin-bottom: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-section="0">
+            <div class="dot"></div>
+            <div class="dot-label">Welcome</div>
+        </div>
+        <div class="nav-dot" data-section="1">
+            <div class="dot"></div>
+            <div class="dot-label">About</div>
+        </div>
+        <div class="nav-dot" data-section="2">
+            <div class="dot"></div>
+            <div class="dot-label">Services</div>
+        </div>
+        <div class="nav-dot" data-section="3">
+            <div class="dot"></div>
+            <div class="dot-label">Packages</div>
+        </div>
+        <div class="nav-dot" data-section="4">
+            <div class="dot"></div>
+            <div class="dot-label">Contact</div>
+        </div>
+    </div>
+
+    <!-- Main Container with Sections -->
+    <div class="container" id="main-container">
+        <!-- Section 1 - Welcome -->
+        <section class="section welcome">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            <div class="welcome-content">
+                <h1 class="logo">Vibrify</h1>
+                <p class="tagline">Creative Digital Solutions That Bring Your Brand to Life</p>
+                <button class="cta-button">Get Started Today</button>
+            </div>
+        </section>
+
+        <!-- Section 2 - About Us -->
+        <section class="section about">
+            <div class="about-content">
+                <div class="section-title">
+                    <h2>About Us</h2>
+                </div>
+                <div class="about-text">
+                    <p>At <strong>Vibrify</strong>, we bring ideas to life with creative design, smart development, and result-driven marketing. Our mission is to make your online presence powerful, professional, and profitable.</p>
+                    <p>With expertise in Website Development, SEO, Graphic Designing, and Video Editing, we deliver digital solutions that look amazing and bring real results.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Website Development</h3>
+                        <p>Responsive, user-friendly websites</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>SEO Services</h3>
+                        <p>Rank higher, reach the right audience</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Graphic Design</h3>
+                        <p>Eye-catching, modern designs</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Video Editing</h3>
+                        <p>Engaging, high-quality videos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 - Services -->
+        <section class="section services">
+            <div class="services-content">
+                <div class="section-title">
+                    <h2>Industries We Serve</h2>
+                    <p style="color: var(--gray);">Best fit for your business needs</p>
+                </div>
+                <div class="industries-grid">
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Fashion & Lifestyle</h3>
+                        <p>Social posts + reels high demand. Perfect for clothing brands and influencers.</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Food & Beverage</h3>
+                        <p>Restaurants, cafes, bakeries → menus + ads with mouth-watering visuals.</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Real Estate</h3>
+                        <p>Flyers, ads, reels, brand identity for property showcasing.</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Health & Fitness</h3>
+                        <p>Gyms, nutritionists → reels + tips posts to engage your audience.</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>E-commerce</h3>
+                        <p>Shopify brands → product posts, ads to boost sales.</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Education / Courses</h3>
+                        <p>Coaches, tutors → carousels, explainers for educational content.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 - Packages (Mobile Optimized Horizontal Layout) -->
+        <section class="section packages">
+            <div class="packages-content">
+                <div class="section-title">
+                    <h2>Our Packages</h2>
+                    <p style="color: var(--gray);">Choose the perfect plan for your needs</p>
+                </div>
+                
+                <div class="pricing-horizontal">
+                    <!-- Starter Plan -->
+                    <div class="pricing-card">
+                        <div class="plan-header">
+                            <h3 class="plan-name">🌟 Starter</h3>
+                            <div class="plan-price">$15</div>
+                            <div class="plan-period">one-time payment</div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 3 Social Media Graphics</li>
+                            <li><i class="fas fa-check"></i> 4 Short Video Edit (30 sec)</li>
+                            <li><i class="fas fa-check"></i> Basic On-Page SEO Setup</li>
+                            <li><i class="fas fa-check"></i> Single Page Website Banner</li>
+                            <li><i class="fas fa-check"></i> 2 Revisions</li>
+                            <li><i class="fas fa-check"></i> 3 Days Delivery</li>
+                        </ul>
+                        <div class="plan-action">
+                            <button class="cta-button">Select Plan</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Standard Plan (Most Popular) -->
+                    <div class="pricing-card popular">
+                        <div class="plan-header">
+                            <h3 class="plan-name">✨ Standard</h3>
+                            <div class="plan-price">$30</div>
+                            <div class="plan-period">one-time payment</div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 7 Social Media Graphics</li>
+                            <li><i class="fas fa-check"></i> 8 Video Edits (1 min each)</li>
+                            <li><i class="fas fa-check"></i> SEO Optimization</li>
+                            <li><i class="fas fa-check"></i> 3-Page Website</li>
+                            <li><i class="fas fa-check"></i> 5 Revisions</li>
+                            <li><i class="fas fa-check"></i> 5 Days Delivery</li>
+                        </ul>
+                        <div class="plan-action">
+                            <button class="cta-button">Select Plan</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Premium Plan -->
+                    <div class="pricing-card">
+                        <div class="plan-header">
+                            <h3 class="plan-name">💎 Premium</h3>
+                            <div class="plan-price">$50</div>
+                            <div class="plan-period">one-time payment</div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 15 Social Media Graphics</li>
+                            <li><i class="fas fa-check"></i> 14 Video Edits (2 min each)</li>
+                            <li><i class="fas fa-check"></i> Advanced SEO + Audit</li>
+                            <li><i class="fas fa-check"></i> Full Website + Brand Kit</li>
+                            <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+                            <li><i class="fas fa-check"></i> 7 Days Delivery</li>
+                        </ul>
+                        <div class="plan-action">
+                            <button class="cta-button">Select Plan</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Swipe to see more packages</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 - Thank You -->
+        <section class="section thankyou">
+            <div class="thankyou-content">
+                <h2>Thank You!</h2>
+                <p>We appreciate your interest in Vibrify. Let's create something amazing together!</p>
+                <p>Contact us today to discuss your project and get a personalized quote.</p>
+                <button class="cta-button">Get In Touch</button>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Current section index
+        let currentSection = 0;
+        const totalSections = 5;
+        const container = document.getElementById('main-container');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        // Function to update active dot
+        function updateActiveDot(index) {
+            navDots.forEach(dot => dot.classList.remove('active'));
+            navDots[index].classList.add('active');
+        }
+
+        // Function to scroll to section
+        function scrollToSection(index) {
+            if (index < 0) index = 0;
+            if (index >= totalSections) index = totalSections - 1;
+            
+            currentSection = index;
+            container.style.transform = `translateX(-${index * 100}vw)`;
+            updateActiveDot(index);
+            
+            // Trigger animations for the current section
+            animateSection(index);
+        }
+
+        // Function to animate elements in the current section
+        function animateSection(index) {
+            const section = document.querySelectorAll('.section')[index];
+            
+            // Reset animations
+            const animatedElements = section.querySelectorAll('.section-title, .about-text, .service-item, .industry-card, .pricing-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+            });
+            
+            // Animate with delay
+            setTimeout(() => {
+                animatedElements.forEach((el, i) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                        el.style.transition = 'all 0.6s ease';
+                    }, i * 200);
+                });
+            }, 300);
+        }
+
+        // Initialize first section animations
+        document.addEventListener('DOMContentLoaded', () => {
+            animateSection(0);
+            
+            // Add click events to navigation dots
+            navDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const sectionIndex = parseInt(dot.getAttribute('data-section'));
+                    scrollToSection(sectionIndex);
+                });
+            });
+        });
+
+        // Mouse wheel navigation
+        let isScrolling = false;
+        window.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+            
+            isScrolling = true;
+            
+            if (e.deltaY > 0) {
+                // Scroll down - move to next section
+                scrollToSection(currentSection + 1);
+            } else {
+                // Scroll up - move to previous section
+                scrollToSection(currentSection - 1);
+            }
+            
+            // Prevent multiple triggers
+            setTimeout(() => {
+                isScrolling = false;
+            }, 1000);
+        });
+
+        // Touch swipe for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe left - next section
+                scrollToSection(currentSection + 1);
+            }
+            
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe right - previous section
+                scrollToSection(currentSection - 1);
+            }
+        }
+
+        // Button click animations
+        const buttons = document.querySelectorAll('.cta-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            // Re-trigger animations on resize
+            animateSection(currentSection);
+        });
+
+        // Fix for mobile viewport height
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setVH();
+        window.addEventListener('resize', setVH);
+    </script>
+</body>
+</html>
